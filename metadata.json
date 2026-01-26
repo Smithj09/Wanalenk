@@ -1,0 +1,8 @@
+
+{
+  "name": "CivicConnect : Plateforme numérique urbaine",
+  "description": "Un écosystème numérique complet permettant aux institutions de la ville de publier des offres d'emploi et de vendre des produits, et aux citoyens de postuler et de s'engager. Comprend un accès basé sur les rôles, des flux de vérification et un marché moderne.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
