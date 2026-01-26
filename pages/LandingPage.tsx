@@ -12,15 +12,15 @@ const LandingPage: React.FC<{ onNavigate: (page: string) => void }> = ({ onNavig
 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Hero Section - Using Deep Navy for background */}
-      <section className="relative bg-[#00235b] py-20 lg:py-32 overflow-hidden">
+      {/* Hero Section - Using Primary Navy for background */}
+      <section className="relative bg-primary-navy py-20 lg:py-32 overflow-hidden">
         <div className="absolute inset-0 opacity-20 pointer-events-none">
           {/* Subtle Orange glow in the background to match logo flair */}
-          <div className="absolute top-0 -left-1/4 w-1/2 h-1/2 bg-[#f97316] rounded-full blur-[120px]"></div>
-          <div className="absolute bottom-0 -right-1/4 w-1/2 h-1/2 bg-blue-500 rounded-full blur-[120px]"></div>
+          <div className="absolute top-0 -left-1/4 w-1/2 h-1/2 bg-primary-orange rounded-full blur-[120px]"></div>
+          <div className="absolute bottom-0 -right-1/4 w-1/2 h-1/2 bg-info rounded-full blur-[120px]"></div>
         </div>
         <div className="max-w-7xl mx-auto px-4 relative z-10 text-center">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white  tracking-tight">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight">
             
             <div className="flex items-center justify-center ">
                     <h1 className="text-5xl sm:text-4xl md:text-7xl lg:text-7xl font-extrabold text-white tracking-tight">
@@ -31,16 +31,15 @@ const LandingPage: React.FC<{ onNavigate: (page: string) => void }> = ({ onNavig
             
             
              <br/>
-            <span className="text-[#f97316]">{h.title}</span>
+            <span className="text-primary-orange">{h.title}</span>
           </h1>
-          <p className="text-xl text-blue-100/80 max-w-2xl mx-auto mb-10">
+          <p className="text-xl text-neutral-100/80 max-w-2xl mx-auto mb-10">
             {h.tagline}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button 
               onClick={() => onNavigate('register')}
-              
-              className="w-full sm:w-auto px-8 py-4 bg-[#f97316] text-white rounded-xl font-bold text-lg hover:bg-[#ea580c] transition transform hover:scale-105 shadow-lg"
+              className="btn-primary w-full sm:w-auto"
             >
               {h.ctaPrimary}
             </button>
@@ -97,19 +96,19 @@ const LandingPage: React.FC<{ onNavigate: (page: string) => void }> = ({ onNavig
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-[#00235b] mb-4">{l.explore}</h2>
-            <p className="text-slate-600">{l.exploreSub}</p>
+            <h2 className="text-3xl font-bold text-primary-navy mb-4">{l.explore}</h2>
+            <p className="text-neutral-600">{l.exploreSub}</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6">
             {CATEGORIES.map((cat, i) => (
               <button 
                 key={i}
-                className="flex flex-col items-center p-6 bg-slate-50 rounded-2xl border border-slate-100 hover:border-[#f97316]/30 hover:shadow-lg transition-all group"
+                className="card-hover flex flex-col items-center p-6 group"
               >
-                <div className={`mb-4 p-3 rounded-xl ${cat.color} group-hover:bg-[#00235b] group-hover:text-white transition-all`}>
+                <div className="mb-4 p-3 rounded-xl group-hover:bg-primary-navy group-hover:text-white transition-all">
                   {cat.icon}
                 </div>
-                <span className="font-semibold text-slate-700 text-sm group-hover:text-[#00235b]">{catLabels[cat.label]}</span>
+                <span className="font-semibold text-neutral-700 text-sm group-hover:text-primary-navy">{catLabels[cat.label]}</span>
               </button>
             ))}
           </div>
@@ -155,42 +154,42 @@ const LandingPage: React.FC<{ onNavigate: (page: string) => void }> = ({ onNavig
       </section>
 
       {/* Trust Section - Themed Navy */}
-      <section className="py-20 bg-[#00235b] text-white">
+      <section className="py-20 bg-primary-navy text-white">
         <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-12">
           <div className="text-center">
-            <div className="bg-white/10 text-[#f97316] w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <div className="bg-white/10 text-primary-orange w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
               <ShieldCheck size={32} />
             </div>
             <h3 className="text-xl font-bold mb-3">{l.trustPartners}</h3>
-            <p className="text-blue-100/70">{l.trustPartnersSub}</p>
+            <p className="text-neutral-100/70">{l.trustPartnersSub}</p>
           </div>
           <div className="text-center">
-            <div className="bg-white/10 text-[#f97316] w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <div className="bg-white/10 text-primary-orange w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
               <Zap size={32} />
             </div>
             <h3 className="text-xl font-bold mb-3">{l.trustFast}</h3>
-            <p className="text-blue-100/70">{l.trustFastSub}</p>
+            <p className="text-neutral-100/70">{l.trustFastSub}</p>
           </div>
           <div className="text-center">
-            <div className="bg-white/10 text-[#f97316] w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <div className="bg-white/10 text-primary-orange w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
               <Globe size={32} />
             </div>
             <h3 className="text-xl font-bold mb-3">{l.trustGlobal}</h3>
-            <p className="text-blue-100/70">{l.trustGlobalSub}</p>
+            <p className="text-neutral-100/70">{l.trustGlobalSub}</p>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-900 py-12 border-t border-slate-800">
+      <footer className="bg-neutral-900 py-12 border-t border-neutral-800">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="text-2xl font-bold text-white mb-6">{APP_NAME}</div>
-          <div className="flex justify-center gap-8 mb-8 text-slate-400 text-sm">
-            <a href="#" className="hover:text-[#f97316] transition">Privacy Policy</a>
-            <a href="#" className="hover:text-[#f97316] transition">Terms of Service</a>
-            <a href="#" className="hover:text-[#f97316] transition">Contact Us</a>
+          <div className="flex justify-center gap-8 mb-8 text-neutral-400 text-sm">
+            <a href="#" className="hover:text-primary-orange transition">Privacy Policy</a>
+            <a href="#" className="hover:text-primary-orange transition">Terms of Service</a>
+            <a href="#" className="hover:text-primary-orange transition">Contact Us</a>
           </div>
-          <p className="text-slate-500 text-xs">© 2026 {APP_NAME}. All rights reserved.</p>
+          <p className="text-neutral-500 text-xs">© 2026 {APP_NAME}. All rights reserved.</p>
         </div>
       </footer>
     </div>

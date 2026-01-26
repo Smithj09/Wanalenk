@@ -191,31 +191,25 @@ const Dashboard: React.FC = () => {
           {adminTab === 'analytics' && (
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div className="bg-white p-6 rounded-2xl border border-slate-200">
-                  <div className="flex items-center gap-4">
-                    <div className="p-3 bg-blue-100 text-blue-600 rounded-xl"><Users size={24} /></div>
-                    <div>
-                      <div className="text-sm text-slate-500">{labels.totalRegistered}</div>
-                      <div className="text-2xl font-bold">{users.length}</div>
-                    </div>
+                <div className="stat-card">
+                  <div className="stat-icon-primary"><Users size={24} /></div>
+                  <div>
+                    <div className="text-sm text-neutral-500">{labels.totalRegistered}</div>
+                    <div className="text-2xl font-bold">{users.length}</div>
                   </div>
                 </div>
-                <div className="bg-white p-6 rounded-2xl border border-slate-200">
-                  <div className="flex items-center gap-4">
-                    <div className="p-3 bg-amber-100 text-amber-600 rounded-xl"><Clock size={24} /></div>
-                    <div>
-                      <div className="text-sm text-slate-500">{labels.pending}</div>
-                      <div className="text-2xl font-bold">{users.filter(u => u.status === 'PENDING').length}</div>
-                    </div>
+                <div className="stat-card">
+                  <div className="stat-icon-warning"><Clock size={24} /></div>
+                  <div>
+                    <div className="text-sm text-neutral-500">{labels.pending}</div>
+                    <div className="text-2xl font-bold">{users.filter(u => u.status === 'PENDING').length}</div>
                   </div>
                 </div>
-                <div className="bg-white p-6 rounded-2xl border border-slate-200">
-                  <div className="flex items-center gap-4">
-                    <div className="p-3 bg-emerald-100 text-emerald-600 rounded-xl"><Briefcase size={24} /></div>
-                    <div>
-                      <div className="text-sm text-slate-500">{labels.activeJobs}</div>
-                      <div className="text-2xl font-bold">{jobs.length}</div>
-                    </div>
+                <div className="stat-card">
+                  <div className="stat-icon-success"><Briefcase size={24} /></div>
+                  <div>
+                    <div className="text-sm text-neutral-500">{labels.activeJobs}</div>
+                    <div className="text-2xl font-bold">{jobs.length}</div>
                   </div>
                 </div>
                 <div className="bg-white p-6 rounded-2xl border border-slate-200">
@@ -242,23 +236,23 @@ const Dashboard: React.FC = () => {
                             <span className="font-medium text-slate-600 uppercase tracking-wider">{(labels.roles as any)[role]}</span>
                             <span className="font-bold">{count}</span>
                           </div>
-                          <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                            <div className="bg-blue-500 h-full transition-all" style={{ width: `${percentage}%` }}></div>
+                          <div className="w-full bg-neutral-100 h-2 rounded-full overflow-hidden">
+                            <div className="bg-primary-orange h-full transition-all" style={{ width: `${percentage}%` }}></div>
                           </div>
                         </div>
                       )
                     })}
                   </div>
                 </div>
-                <div className="bg-white p-8 rounded-2xl border border-slate-200">
+                <div className="card">
                   <h3 className="text-lg font-bold mb-6">{labels.systemHealth}</h3>
-                  <div className="flex items-center gap-4 p-4 bg-emerald-50 text-emerald-700 rounded-xl border border-emerald-100">
+                  <div className="flex items-center gap-4 p-4 bg-success/10 text-success rounded-xl border border-success/20">
                     <CheckCircle size={20} />
                     <span className="font-medium">{labels.allSystems}</span>
                   </div>
-                  <div className="mt-6 p-4 bg-slate-50 rounded-xl border border-slate-100">
-                    <div className="text-sm text-slate-500 mb-2">{labels.verificationRate}</div>
-                    <div className="text-3xl font-bold text-slate-800">84.5%</div>
+                  <div className="mt-6 p-4 bg-neutral-50 rounded-xl border border-neutral-100">
+                    <div className="text-sm text-neutral-500 mb-2">{labels.verificationRate}</div>
+                    <div className="text-3xl font-bold text-neutral-800">84.5%</div>
                   </div>
                 </div>
               </div>
@@ -266,15 +260,15 @@ const Dashboard: React.FC = () => {
           )}
 
           {adminTab === 'users' && (
-            <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
-              <div className="p-6 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="card overflow-hidden">
+              <div className="p-6 border-b border-neutral-200 flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <h2 className="text-xl font-bold">{labels.userDir}</h2>
                 <div className="flex items-center gap-2 text-sm">
-                  <Filter size={16} className="text-slate-400" />
+                  <Filter size={16} className="text-neutral-400" />
                   <select 
                     value={statusFilter} 
                     onChange={(e) => setStatusFilter(e.target.value as any)}
-                    className="bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-lg focus:ring-2 focus:ring-blue-500"
+                    className="form-select bg-neutral-50 px-3 py-1.5"
                   >
                     <option value="ALL">{labels.allStatus}</option>
                     <option value="PENDING">{labels.pending}</option>
@@ -285,7 +279,7 @@ const Dashboard: React.FC = () => {
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-sm md:text-base">
-                  <thead className="bg-slate-50 text-slate-500 uppercase text-xs font-bold tracking-wider">
+                  <thead className="table-header">
                     <tr>
                       <th className="px-6 py-4">{labels.entity}</th>
                       <th className="px-6 py-4">{labels.role}</th>
@@ -294,26 +288,26 @@ const Dashboard: React.FC = () => {
                       <th className="px-6 py-4 text-right">{labels.actions}</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-100">
+                  <tbody className="divide-y divide-neutral-100">
                     {filteredUsers.map(u => (
-                      <tr key={u.id} className="hover:bg-slate-50/50 transition">
+                      <tr key={u.id} className="hover:bg-neutral-50/50 transition">
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-xs">
+                            <div className="w-8 h-8 rounded-full bg-primary-orange/10 text-primary-orange flex items-center justify-center font-bold text-xs">
                               {u.name.charAt(0)}
                             </div>
                             <div className="truncate max-w-[120px]">
-                              <div className="font-bold text-slate-900 truncate">{u.name}</div>
+                              <div className="font-bold text-neutral-900 truncate">{u.name}</div>
                             </div>
                           </div>
                         </td>
                         <td className="px-6 py-4">
-                          <span className="text-xs font-bold bg-slate-100 px-2 py-1 rounded text-slate-600">{(labels.roles as any)[u.role]}</span>
+                          <span className="badge-neutral">{(labels.roles as any)[u.role]}</span>
                         </td>
                         <td className="px-6 py-4">
                           <span className={`text-xs font-bold px-2 py-1 rounded-full ${
-                            u.status === 'APPROVED' ? 'bg-emerald-100 text-emerald-600' : 
-                            u.status === 'PENDING' ? 'bg-amber-100 text-amber-600' : 'bg-rose-100 text-rose-600'
+                            u.status === 'APPROVED' ? 'badge-success' : 
+                            u.status === 'PENDING' ? 'badge-warning' : 'badge-error'
                           }`}>
                             {u.status}
                           </span>
@@ -388,71 +382,71 @@ const Dashboard: React.FC = () => {
               <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
                 <div className="p-6 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
                   <h2 className="text-xl font-bold">{labels.managePostings}</h2>
-                  <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-bold hover:bg-blue-700 transition">
+                  <button className="btn-primary flex items-center gap-2 px-4 py-2 text-sm">
                     <Plus size={16} /> {labels.newJob}
                   </button>
                 </div>
-                <div className="divide-y divide-slate-100">
+                <div className="divide-y divide-neutral-100">
                   {jobs.filter(j => j.institutionId === currentUser.id).map(job => (
-                    <div key={job.id} className="p-6 flex justify-between items-center hover:bg-slate-50 transition">
+                    <div key={job.id} className="p-6 flex justify-between items-center hover:bg-neutral-50 transition">
                       <div>
                         <div className="font-bold text-lg">{job.title}</div>
-                        <div className="text-sm text-slate-500">{catLabels[job.category]} • {applications.filter(a => a.jobId === job.id).length} kandida</div>
+                        <div className="text-sm text-neutral-500">{catLabels[job.category]} • {applications.filter(a => a.jobId === job.id).length} kandida</div>
                       </div>
-                      <button className="text-blue-600 font-medium hover:underline">{labels.viewApplicants}</button>
+                      <button className="text-primary-orange font-medium hover:underline">{labels.viewApplicants}</button>
                     </div>
                   ))}
                 </div>
               </div>
             )}
             {isUser && (
-              <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
-                <div className="p-6 border-b border-slate-100 bg-slate-50/50">
+              <div className="card overflow-hidden">
+                <div className="p-6 border-b border-neutral-200 bg-neutral-50/50">
                   <h2 className="text-xl font-bold">{labels.myApps}</h2>
                 </div>
-                <div className="divide-y divide-slate-100">
+                <div className="divide-y divide-neutral-100">
                   {applications.filter(a => a.userId === currentUser.id).length > 0 ? (
                     applications.filter(a => a.userId === currentUser.id).map(app => {
                       const job = jobs.find(j => j.id === app.jobId);
                       return (
-                        <div key={app.id} className="p-6 flex justify-between items-center hover:bg-slate-50 transition">
+                        <div key={app.id} className="p-6 flex justify-between items-center hover:bg-neutral-50 transition">
                           <div>
                             <div className="font-bold">{job?.title}</div>
-                            <div className="text-sm text-slate-500">{job?.institutionName}</div>
+                            <div className="text-sm text-neutral-500">{job?.institutionName}</div>
                           </div>
                           <div className={`px-3 py-1 rounded-full text-xs font-bold uppercase ${
-                            app.status === 'PENDING' ? 'bg-amber-100 text-amber-600' : 
-                            app.status === 'ACCEPTED' ? 'bg-emerald-100 text-emerald-600' : 'bg-slate-100 text-slate-600'
+                            app.status === 'PENDING' ? 'badge-warning' : 
+                            app.status === 'ACCEPTED' ? 'badge-success' : 'badge-neutral'
                           }`}>{app.status}</div>
                         </div>
                       );
                     })
                   ) : (
-                    <div className="p-12 text-center text-slate-500">{labels.noApps}</div>
+                    <div className="p-12 text-center text-neutral-500">{labels.noApps}</div>
                   )}
                 </div>
               </div>
             )}
           </div>
           <div className="space-y-8">
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+            <div className="card">
               <h2 className="font-bold mb-4">{labels.quickActions}</h2>
               <div className="grid grid-cols-1 gap-3">
                 {isInstitution ? (
                   <>
-                    <button className="flex items-center gap-3 p-3 bg-slate-50 text-slate-700 rounded-xl hover:bg-blue-50 transition text-left">
+                    <button className="flex items-center gap-3 p-3 bg-neutral-50 text-neutral-700 rounded-xl hover:bg-blue-50 transition text-left">
                       <Plus size={20} className="text-blue-500" /> {labels.postProduct}
                     </button>
-                    <button className="flex items-center gap-3 p-3 bg-slate-50 text-slate-700 rounded-xl hover:bg-blue-50 transition text-left">
+                    <button className="flex items-center gap-3 p-3 bg-neutral-50 text-neutral-700 rounded-xl hover:bg-blue-50 transition text-left">
                       <FileText size={20} className="text-indigo-500" /> {labels.viewStats}
                     </button>
                   </>
                 ) : (
                   <>
-                    <button className="flex items-center gap-3 p-3 bg-slate-50 text-slate-700 rounded-xl hover:bg-blue-50 transition text-left">
+                    <button className="flex items-center gap-3 p-3 bg-neutral-50 text-neutral-700 rounded-xl hover:bg-blue-50 transition text-left">
                       <Briefcase size={20} className="text-blue-500" /> {labels.exploreJobs}
                     </button>
-                    <button className="flex items-center gap-3 p-3 bg-slate-50 text-slate-700 rounded-xl hover:bg-blue-50 transition text-left">
+                    <button className="flex items-center gap-3 p-3 bg-neutral-50 text-neutral-700 rounded-xl hover:bg-blue-50 transition text-left">
                       <ShoppingBag size={20} className="text-indigo-500" /> {labels.localMarket}
                     </button>
                   </>
@@ -460,9 +454,9 @@ const Dashboard: React.FC = () => {
               </div>
             </div>
             {isUser && (
-              <div className="bg-gradient-to-br from-blue-600 to-indigo-700 p-6 rounded-2xl text-white shadow-lg">
+              <div className="gradient-primary p-6 rounded-2xl text-white shadow-lg">
                 <h3 className="font-bold mb-2">{labels.platformVerif}</h3>
-                <p className="text-sm text-blue-100 mb-4">{labels.platformVerifDesc}</p>
+                <p className="text-sm text-neutral-100 mb-4">{labels.platformVerifDesc}</p>
                 <div className="flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-lg text-xs font-bold border border-white/20">
                   <ShieldAlert size={14} /> {labels.verifiedCitizen}
                 </div>

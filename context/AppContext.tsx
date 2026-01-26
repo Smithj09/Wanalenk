@@ -95,27 +95,53 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setProducts(mockProducts);
   }, []);
 
-  const login = (email: string) => {
-    const user = users.find(u => u.email === email);
-    if (user) {
-      setCurrentUser(user);
-    } else {
-      const msg = language === 'FR' ? 'Utilisateur non trouvé.' : 'Itilizatè pa jwenn.';
-      alert(msg);
+  const login = async (email: string, password: string) => {
+    try {
+      const response = await fetch('http://localhost:3001/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setCurrentUser(data.user);
+        localStorage.setItem('token', data.token);
+      } else {
+        alert(data.error || (language === 'FR' ? 'Erreur de connexion' : 'Erè koneksyon'));
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      alert(language === 'FR' ? 'Erreur de connexion au serveur' : 'Erè koneksyon ak sèvè a');
     }
   };
 
-  const register = (name: string, email: string, role: UserRole) => {
-    const newUser: User = {
-      id: Math.random().toString(36).substr(2, 9),
-      name,
-      email,
-      role,
-      status: role === 'ADMIN' ? 'APPROVED' : 'PENDING',
-      createdAt: new Date().toISOString(),
-    };
-    setUsers([...users, newUser]);
-    setCurrentUser(newUser);
+  const register = async (name: string, email: string, password: string, role: UserRole) => {
+    try {
+      const response = await fetch('http://localhost:3001/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, password, role }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setCurrentUser(data.user);
+        localStorage.setItem('token', data.token);
+        alert(language === 'FR' ? data.message : 'Enskripsyon reyisi. Tanpri tann apwobasyon administratè a.');
+      } else {
+        alert(data.error || (language === 'FR' ? 'Erreur d\'inscription' : 'Erè enskripsyon'));
+      }
+    } catch (error) {
+      console.error('Register error:', error);
+      alert(language === 'FR' ? 'Erreur de connexion au serveur' : 'Erè koneksyon ak sèvè a');
+    }
   };
 
   const updateUserStatus = (userId: string, status: ApprovalStatus) => {
