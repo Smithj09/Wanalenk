@@ -106,4 +106,4 @@ export const I18N: Record<Language, any> = {
   }
 };
 
-export const APP_NAME = "CivicConnect";
+export const APP_NAME = "WanaLenk";

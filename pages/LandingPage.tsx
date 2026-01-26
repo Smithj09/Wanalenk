@@ -78,9 +78,10 @@ const LandingPage: React.FC<{ onNavigate: (page: string) => void }> = ({ onNavig
     </div>
 
     <button 
-      className="w-full sm:w-auto px-10 py-3 bg-[#f97316] text-white rounded-xl font-bold hover:bg-[#ea580c] transition-all active:scale-95 shadow-lg"
+      className="w-full sm:w-auto px-10 py-3 bg-[#f97316] text-white rounded-xl font-bold hover:bg-[#ea580c] transition-all active:scale-95 shadow-lg flex items-center justify-center gap-2"
     >
-      Search
+      <Search size={18} />
+      {language === 'FR' ? 'Rechercher' : 'Chèche'}
     </button>
     
   </div>
