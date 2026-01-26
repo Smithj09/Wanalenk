@@ -1,6 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-import { COLORS } from './styles/colors';
-
 export default {
   content: [
     "./index.html",
@@ -14,28 +12,50 @@ export default {
       colors: {
         // Primary Brand Colors
         primary: {
-          DEFAULT: COLORS.primary.navy,
-          navy: COLORS.primary.navy,
-          orange: COLORS.primary.orange,
+          DEFAULT: '#00235b', // deep navy
+          navy: '#00235b',
+          orange: '#f97316',
         },
         
         // Semantic Colors
-        success: COLORS.semantic.success,
-        warning: COLORS.semantic.warning,
-        error: COLORS.semantic.error,
-        info: COLORS.semantic.info,
+        success: '#10b981',
+        warning: '#f59e0b',
+        error: '#ef4444',
+        info: '#3b82f6',
         
         // Neutral Colors
-        neutral: COLORS.neutral,
+        neutral: {
+          50: '#f9fafb',
+          100: '#f3f4f6',
+          200: '#e5e7eb',
+          300: '#d1d5db',
+          400: '#9ca3af',
+          500: '#6b7280',
+          600: '#4b5563',
+          700: '#374151',
+          800: '#1f2937',
+          900: '#111827',
+        },
         
         // Background Colors
-        background: COLORS.background,
+        background: {
+          light: '#f8fafc',
+          dark: '#0f172a',
+        },
         
         // Text Colors
-        text: COLORS.text,
+        text: {
+          primary: '#1e293b',
+          secondary: '#64748b',
+          muted: '#94a3b8',
+        },
         
         // Border Colors
-        border: COLORS.border,
+        border: {
+          light: '#e2e8f0',
+          medium: '#cbd5e1',
+          dark: '#94a3b8',
+        },
       },
       
       // Custom spacing scale

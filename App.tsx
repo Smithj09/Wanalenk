@@ -5,7 +5,7 @@ import Navbar from './components/Navbar';
 import LandingPage from './pages/LandingPage';
 import Dashboard from './pages/Dashboard';
 import AuthPage from './pages/AuthPage';
-import BoutiquePage from './pages/BoutiquePage';
+import Marketplace from './pages/Marketplace';
 
 const AppContent: React.FC = () => {
   const [currentPage, setCurrentPage] = useState('landing');
@@ -35,7 +35,7 @@ const AppContent: React.FC = () => {
       case 'jobs':
         return <div className="p-20 text-center font-bold text-slate-400">{labels.jobs}</div>;
       case 'marketplace':
-        return <BoutiquePage onNavigate={setCurrentPage} />;
+        return <Marketplace onNavigate={setCurrentPage} />;
       default:
         return <LandingPage onNavigate={setCurrentPage} />;
     }
