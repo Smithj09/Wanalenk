@@ -20,7 +20,7 @@ const Navbar: React.FC<{ onNavigate: (page: string) => void }> = ({ onNavigate }
               className="flex items-center gap-2"
             >
               <img 
-                src="/logo1.png" 
+                src="https://i.postimg.cc/VvCNb5b6/logo1.png" 
                 alt={APP_NAME} 
                 className="h-48 w-auto object-contain" 
               />
