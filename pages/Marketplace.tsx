@@ -103,7 +103,7 @@ const Marketplace: React.FC<{ onNavigate: (page: string) => void }> = ({ onNavig
                     key={product.id} 
                     className="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition"
                   >
-                    <div className="h-48 bg-gradient-to-r from-[#00235b] to-[#003370] flex items-center justify-center">
+                    <div className="h-48  from-[#00235b] to-[#003370] flex items-center justify-center">
                       {product.imageUrl ? (
                         <img 
                           src={product.imageUrl} 
