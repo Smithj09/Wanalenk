@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { UserRole } from '../types';
 import { APP_NAME } from '../constants';
+import Footer from '../components/Footer';
 
 const AuthPage: React.FC<{ type: 'login' | 'register', onNavigate: (page: string) => void }> = ({ type, onNavigate }) => {
   const { login, register, language } = useApp();
@@ -102,119 +103,124 @@ const AuthPage: React.FC<{ type: 'login' | 'register', onNavigate: (page: string
   };
 
   return (
-    <div className="min-h-[calc(100vh-64px)] flex items-center justify-center p-4 bg-neutral-50">
-      <div className="card p-8 w-full max-w-md">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl font-extrabold text-neutral-900 mb-2">
-            {type === 'login' ? labels.welcomeBack : labels.join}
-          </h2>
-          <p className="text-neutral-500">
-            {type === 'login' ? labels.loginDetails : labels.registerDetails}
-          </p>
-        </div>
-
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {type === 'register' && (
-            <div>
-              <label className="form-label">{labels.fullNameLabel}</label>
-              <input 
-                type="text" 
-                required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="form-input"
-                placeholder={labels.fullNamePlaceholder}
-              />
+    <div className="flex flex-col min-h-screen">
+      <div className="flex-grow">
+        <div className="min-h-[calc(100vh-64px)] flex items-center justify-center p-4 bg-neutral-50">
+          <div className="card p-8 w-full max-w-md">
+            <div className="text-center mb-10">
+              <h2 className="text-3xl font-extrabold text-neutral-900 mb-2">
+                {type === 'login' ? labels.welcomeBack : labels.join}
+              </h2>
+              <p className="text-neutral-500">
+                {type === 'login' ? labels.loginDetails : labels.registerDetails}
+              </p>
             </div>
-          )}
 
-          <div>
-            <label className="form-label">{labels.emailLabel}</label>
-            <input 
-              type="email" 
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="form-input"
-              placeholder={labels.emailPlaceholder}
-            />
-          </div>
-
-          <div>
-            <label className="form-label">{labels.passwordLabel}</label>
-            <input 
-              type="password" 
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="form-input"
-              placeholder={labels.passwordPlaceholder}
-            />
-          </div>
-
-          {type === 'register' && (
-            <>
-              <div>
-                <label className="form-label">{labels.accType}</label>
-                <div className="grid grid-cols-2 gap-4">
-                  <button 
-                    type="button"
-                    onClick={() => setRole('USER')}
-                    className={`p-3 rounded-xl border font-bold transition ${role === 'USER' ? 'bg-info/10 border-info text-info' : 'border-neutral-200 text-neutral-500'}`}
-                  >
-                    {labels.citizen}
-                  </button>
-                  <button 
-                    type="button"
-                    onClick={() => setRole('INSTITUTION')}
-                    className={`p-3 rounded-xl border font-bold transition ${role === 'INSTITUTION' ? 'bg-info/10 border-info text-info' : 'border-neutral-200 text-neutral-500'}`}
-                  >
-                    {labels.institution}
-                  </button>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {type === 'register' && (
+                <div>
+                  <label className="form-label">{labels.fullNameLabel}</label>
+                  <input 
+                    type="text" 
+                    required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="form-input"
+                    placeholder={labels.fullNamePlaceholder}
+                  />
                 </div>
+              )}
+
+              <div>
+                <label className="form-label">{labels.emailLabel}</label>
+                <input 
+                  type="email" 
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="form-input"
+                  placeholder={labels.emailPlaceholder}
+                />
               </div>
 
               <div>
-                <label className="form-label">{labels.confirmPasswordLabel}</label>
+                <label className="form-label">{labels.passwordLabel}</label>
                 <input 
                   type="password" 
                   required
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="form-input"
-                  placeholder={labels.confirmPasswordPlaceholder}
+                  placeholder={labels.passwordPlaceholder}
                 />
               </div>
 
-              <div>
-                <label className="form-label">{labels.verifLabel}</label>
-                <input 
-                  type="file" 
-                  required
-                  onChange={(e) => setFile(e.target.files?.[0] || null)}
-                  className="w-full px-4 py-2 rounded-xl border border-neutral-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-info/10 file:text-info hover:file:bg-info/20"
-                />
-                <p className="mt-2 text-xs text-neutral-400">{labels.verifHelp}</p>
-              </div>
-            </>
-          )}
+              {type === 'register' && (
+                <>
+                  <div>
+                    <label className="form-label">{labels.accType}</label>
+                    <div className="grid grid-cols-2 gap-4">
+                      <button 
+                        type="button"
+                        onClick={() => setRole('USER')}
+                        className={`p-3 rounded-xl border font-bold transition ${role === 'USER' ? 'bg-info/10 border-info text-info' : 'border-neutral-200 text-neutral-500'}`}
+                      >
+                        {labels.citizen}
+                      </button>
+                      <button 
+                        type="button"
+                        onClick={() => setRole('INSTITUTION')}
+                        className={`p-3 rounded-xl border font-bold transition ${role === 'INSTITUTION' ? 'bg-info/10 border-info text-info' : 'border-neutral-200 text-neutral-500'}`}
+                      >
+                        {labels.institution}
+                      </button>
+                    </div>
+                  </div>
 
-          <button 
-            type="submit"
-            className="btn-primary w-full py-4"
-          >
-            {type === 'login' ? labels.loginBtn : labels.registerBtn}
-          </button>
-        </form>
+                  <div>
+                    <label className="form-label">{labels.confirmPasswordLabel}</label>
+                    <input 
+                      type="password" 
+                      required
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      className="form-input"
+                      placeholder={labels.confirmPasswordPlaceholder}
+                    />
+                  </div>
 
-        <div className="mt-8 pt-8 border-t border-neutral-100 text-center text-neutral-500">
-          {type === 'login' ? (
-            <p>{labels.noAccount} <button onClick={() => onNavigate('register')} className="text-primary-orange font-bold hover:underline">{labels.registerBtn}</button></p>
-          ) : (
-            <p>{labels.hasAccount} <button onClick={() => onNavigate('login')} className="text-primary-orange font-bold hover:underline">{labels.loginBtn}</button></p>
-          )}
+                  <div>
+                    <label className="form-label">{labels.verifLabel}</label>
+                    <input 
+                      type="file" 
+                      required
+                      onChange={(e) => setFile(e.target.files?.[0] || null)}
+                      className="w-full px-4 py-2 rounded-xl border border-neutral-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-info/10 file:text-info hover:file:bg-info/20"
+                    />
+                    <p className="mt-2 text-xs text-neutral-400">{labels.verifHelp}</p>
+                  </div>
+                </>
+              )}
+
+              <button 
+                type="submit"
+                className="btn-primary w-full py-4"
+              >
+                {type === 'login' ? labels.loginBtn : labels.registerBtn}
+              </button>
+            </form>
+
+            <div className="mt-8 pt-8 border-t border-neutral-100 text-center text-neutral-500">
+              {type === 'login' ? (
+                <p>{labels.noAccount} <button onClick={() => onNavigate('register')} className="text-primary-orange font-bold hover:underline">{labels.registerBtn}</button></p>
+              ) : (
+                <p>{labels.hasAccount} <button onClick={() => onNavigate('login')} className="text-primary-orange font-bold hover:underline">{labels.loginBtn}</button></p>
+              )}
+            </div>
+          </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

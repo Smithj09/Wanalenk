@@ -2,6 +2,7 @@ import React from 'react';
 import { Search, ArrowRight, ShieldCheck, Zap, Globe } from 'lucide-react';
 import { CATEGORIES, I18N, APP_NAME } from '../constants';
 import { useApp } from '../context/AppContext';
+import Footer from '../components/Footer';
 
 const LandingPage: React.FC<{ onNavigate: (page: string) => void }> = ({ onNavigate }) => {
   const { jobs, language } = useApp();
@@ -180,18 +181,8 @@ const LandingPage: React.FC<{ onNavigate: (page: string) => void }> = ({ onNavig
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-neutral-900 py-12 border-t border-neutral-800">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <div className="text-2xl font-bold text-white mb-6">{APP_NAME}</div>
-          <div className="flex justify-center gap-8 mb-8 text-neutral-400 text-sm">
-            <a href="#" className="hover:text-primary-orange transition">Privacy Policy</a>
-            <a href="#" className="hover:text-primary-orange transition">Terms of Service</a>
-            <a href="#" className="hover:text-primary-orange transition">Contact Us</a>
-          </div>
-          <p className="text-neutral-500 text-xs">© 2026 {APP_NAME}. All rights reserved.</p>
-        </div>
-      </footer>
+      {/* Professional Footer */}
+      <Footer />
     </div>
   );
 };

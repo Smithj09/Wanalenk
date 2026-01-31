@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { UserRole, ApprovalStatus } from '../types';
 import { I18N } from '../constants';
+import Footer from '../components/Footer';
 
 const Dashboard: React.FC = () => {
   const {
@@ -190,8 +191,13 @@ const Dashboard: React.FC = () => {
   );
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
-      {/* FULL JSX BODY UNCHANGED */}
+    <div className="flex flex-col min-h-screen">
+      <div className="flex-grow">
+        <div className="max-w-7xl mx-auto px-4 py-8">
+          {/* FULL JSX BODY UNCHANGED */}
+        </div>
+      </div>
+      <Footer />
     </div>
   );
 };
