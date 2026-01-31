@@ -12,8 +12,8 @@ interface AppContextType {
   reviews: Review[];
   language: Language;
   setLanguage: (lang: Language) => void;
-  login: (email: string) => void;
-  register: (name: string, email: string, role: UserRole) => void;
+  login: (email: string, password: string) => void;
+  register: (name: string, email: string, password: string, role: UserRole) => void;
   updateUserStatus: (userId: string, status: ApprovalStatus) => void;
   postJob: (job: Omit<Job, 'id' | 'createdAt'>) => void;
   postProduct: (product: Omit<Product, 'id' | 'createdAt'>) => void;
@@ -95,7 +95,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setProducts(mockProducts);
   }, []);
 
-  const login = async (email: string, password: string) => {
+  const login = async (email: string, password: string): Promise<boolean> => {
     try {
       const response = await fetch('http://localhost:3001/api/auth/login', {
         method: 'POST',
@@ -110,16 +110,19 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       if (response.ok) {
         setCurrentUser(data.user);
         localStorage.setItem('token', data.token);
+        return true;
       } else {
         alert(data.error || (language === 'FR' ? 'Erreur de connexion' : 'Erè koneksyon'));
+        return false;
       }
     } catch (error) {
       console.error('Login error:', error);
       alert(language === 'FR' ? 'Erreur de connexion au serveur' : 'Erè koneksyon ak sèvè a');
+      return false;
     }
   };
 
-  const register = async (name: string, email: string, password: string, role: UserRole) => {
+  const register = async (name: string, email: string, password: string, role: UserRole): Promise<boolean> => {
     try {
       const response = await fetch('http://localhost:3001/api/auth/register', {
         method: 'POST',
@@ -135,12 +138,15 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         setCurrentUser(data.user);
         localStorage.setItem('token', data.token);
         alert(language === 'FR' ? data.message : 'Enskripsyon reyisi. Tanpri tann apwobasyon administratè a.');
+        return true;
       } else {
         alert(data.error || (language === 'FR' ? 'Erreur d\'inscription' : 'Erè enskripsyon'));
+        return false;
       }
     } catch (error) {
       console.error('Register error:', error);
       alert(language === 'FR' ? 'Erreur de connexion au serveur' : 'Erè koneksyon ak sèvè a');
+      return false;
     }
   };
 

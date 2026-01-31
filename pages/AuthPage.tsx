@@ -66,7 +66,7 @@ const AuthPage: React.FC<{ type: 'login' | 'register', onNavigate: (page: string
     }
   }[language];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (type === 'login') {
@@ -74,7 +74,10 @@ const AuthPage: React.FC<{ type: 'login' | 'register', onNavigate: (page: string
         alert(language === 'FR' ? 'Veuillez remplir tous les champs' : 'Tanpri ranpli tout chan yo');
         return;
       }
-      login(email, password);
+      const success = await login(email, password);
+      if (success) {
+        onNavigate('dashboard');
+      }
     } else {
       if (!name || !email || !password || !confirmPassword) {
         alert(language === 'FR' ? 'Veuillez remplir tous les champs' : 'Tanpri ranpli tout chan yo');
@@ -91,9 +94,11 @@ const AuthPage: React.FC<{ type: 'login' | 'register', onNavigate: (page: string
         return;
       }
       
-      register(name, email, password, role);
+      const success = await register(name, email, password, role);
+      if (success) {
+        onNavigate('dashboard');
+      }
     }
-    onNavigate('dashboard');
   };
 
   return (
